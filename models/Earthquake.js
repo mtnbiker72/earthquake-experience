@@ -11,10 +11,6 @@ Earthquake.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
-      user: DataTypes.STRING,
-      allowNull: false,
-    },
     magnitude: {
       type: DataTypes.INTEGER,
       allowNull: false,
