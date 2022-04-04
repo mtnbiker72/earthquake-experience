@@ -6,93 +6,16 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>Earthquakes Around the World</title>
   <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
-  <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css">
-
+  <link rel="stylesheet" href="/css/style.css" />
   <script src="https://js.arcgis.com/4.23/"></script>
-  <script>
-    require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], (
-      Map,
-      GeoJSONLayer,
-      MapView
-    ) => {
-      // If GeoJSON files are not on the same domain as your website, a CORS enabled server
-      // or a proxy is required.
-      const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
-      const template = {
-        title: "Earthquake Info",
-        content: "Magnitude {mag} {type} hit {place} on {time}",
-        fieldInfos: [
-          {
-            fieldName: 'time',
-            format: {
-              dateFormat: 'short-date-short-time'
-            }
-          }
-        ]
-      };
-
-      const renderer = {
-        type: "simple",
-        field: "mag",
-        symbol: {
-          type: "simple-marker",
-          color: "orange",
-          outline: {
-            color: "white"
-          }
-        },
-        visualVariables: [{
-          type: "size",
-          field: "mag",
-          stops: [{
-              value: 2.5,
-              size: "4px"
-            },
-            {
-              value: 8,
-              size: "40px"
-            }
-          ]
-        }]
-      };
-
-      const geojsonLayer = new GeoJSONLayer({
-        url: url,
-        copyright: "USGS Earthquakes",
-        popupTemplate: template,
-        renderer: renderer,
-        orderBy: {
-          field: "mag"
-        }
-      });
-
-      const map = new Map({
-        basemap: "gray-vector",
-        layers: [geojsonLayer]
-      });
-
-      const view = new MapView({
-        container: "viewDiv",
-        center: [-168, 46],
-        zoom: 2,
-        map: map
-      });
-    });
-
-  </script>
 </head>
 
 <body>
-  <div id="viewDiv"></div>
+  <h1>Earthquakes around the World</h1>
+  <div class="content">
+    {{{body}}}
+  </div>
 
-      <!-- Render the sub layout -->
-      {{{ body }}}
-
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
 </body>
 
 </html>
