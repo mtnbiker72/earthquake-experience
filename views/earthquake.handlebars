@@ -1,73 +1,118 @@
-<script> 
+<script>
     require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], (
-  Map,
-  GeoJSONLayer,
-  MapView
-) => {
-  // If GeoJSON files are not on the same domain as your website, a CORS enabled server
-  // or a proxy is required.
-  const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
-  const template = {
-    title: "Earthquake Info",
-    content: "Magnitude {mag} {type} hit {place} on {time}",
-    fieldInfos: [
-      {
-        fieldName: 'time',
-        format: {
-          dateFormat: 'short-date-short-time'
-        }
-      }
-    ]
-  };
+        Map,
+        GeoJSONLayer,
+        MapView
+    ) => {
+        // If GeoJSON files are not on the same domain as your website, a CORS enabled server
+        // or a proxy is required.
+        const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
+        const template = {
+            title: "Earthquake Info",
+            content: "Magnitude {mag} {type} hit {place} on {time}",
+            fieldInfos: [
+                {
+                    fieldName: 'time',
+                    format: {
+                        dateFormat: 'short-date-short-time'
+                    }
+                }
+            ]
+        };
 
-  const renderer = {
-    type: "simple",
-    field: "mag",
-    symbol: {
-      type: "simple-marker",
-      color: "orange",
-      outline: {
-        color: "white"
-      }
-    },
-    visualVariables: [{
-      type: "size",
-      field: "mag",
-      stops: [{
-        value: 2.5,
-        size: "4px"
-      },
-      {
-        value: 8,
-        size: "40px"
-      }
-      ]
-    }]
-  };
+        const renderer = {
+            type: "simple",
+            field: "mag",
+            symbol: {
+                type: "simple-marker",
+                color: "orange",
+                outline: {
+                    color: "white"
+                }
+            },
+            visualVariables: [{
+                type: "size",
+                field: "mag",
+                stops: [{
+                    value: 2.5,
+                    size: "4px"
+                },
+                {
+                    value: 8,
+                    size: "40px"
+                }
+                ]
+            },
+            {
+                field: "place"  
+            }]
+        };
 
-  const geojsonLayer = new GeoJSONLayer({
-    url: url,
-    copyright: "USGS Earthquakes",
-    renderer: renderer,
-    orderBy: {
-      field: "mag"
-    }
-  });
+        const earthquakeLayer = new GeoJSONLayer({
+            url: url,
+            copyright: "USGS Earthquakes",
+            renderer: renderer,
+            orderBy: {
+                field: "mag"
+            },
+            outFields: ["mag", "place", "time", "tsunami"]
+        });
 
-  const map = new Map({
-    basemap: "gray-vector",
-    layers: [geojsonLayer]
-  });
+        const map = new Map({
+            basemap: "gray-vector",
+            layers: [earthquakeLayer]
+        });
 
-  const view = new MapView({
-    container: "viewDiv",
-    center: [-168, 46],
-    zoom: 2,
-    map: map
-  });
-});
+        const view = new MapView({
+            container: "viewDiv",
+            center: [-168, 46],
+            zoom: 2,
+            map: map
+        });
+
+        // Sample map code from ESRI, slightly modified for earthquakes
+        // https://developers.arcgis.com/javascript/latest/sample-code/sandbox/?sample=view-hittest
+
+        view
+            .when()
+            .then(() => {
+                return earthquakeLayer.when();
+            })
+            .then((layer) => {
+                return view.whenLayerView(layer);
+            })
+            .then((layerView) => {
+                view.on("pointer-down", eventHandler);
+
+                function eventHandler(event) {
+                    // only include graphics from hurricanesLayer in the hitTest
+                    const opts = {
+                        include: earthquakeLayer
+                    };
+                    // the hitTest() checks to see if any graphics from the hurricanesLayer
+                    // intersect the x, y coordinates of the pointer
+                    view.hitTest(event, opts).then(getGraphics);
+                }
+
+                let highlight, currentYear, currentName;
+
+                function getGraphics(response) {
+                    // the topmost graphic from the hurricanesLayer
+                    // and display select attribute values from the
+                    // graphic to the user
+                    if (response.results.length) {
+                        const graphic = response.results[0].graphic;
+                        const attributes = graphic.attributes;
+                        const category = attributes.CAT;
+                        setEarthquake(attributes);
+                    }
+                };
+            });
+    });
+
 </script>
+
 
 <div class="map" id="viewDiv"></div>
 
-<div class="panel">I'm the panel </div>
+<div class="panel">{{> side-panel}}</div>
