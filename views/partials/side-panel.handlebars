@@ -19,7 +19,7 @@ I'm the handlebar panel that shows all the data
 {{/if}}
 {{!-- Hide this until the user logs in and clicks on an earthquake --}}
 {{#if logged_in}}
-<div>Experience</div>
+<div>Add New Experience</div>
     <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
       <div class="card-body new-experience-form">
         <form>
@@ -40,3 +40,19 @@ I'm the handlebar panel that shows all the data
     </div>
 <script src="./js/experience.js"></script>
 {{/if }}
+<div>
+    Experiences 
+    <!-- Loop over each object in the projects array -->
+{{#each experiences as |experience| }}
+<div class="row mb-4 project">
+  <div class="col-md-5">
+    <h2>
+      {{experience.feel_it}}
+    </h2>
+    <h2>
+      {{experience.description}}
+    </h2>
+  </div>
+</div>
+{{/each}}
+</div>
