@@ -36,7 +36,20 @@ Earthquake.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-  }, 
+    feel_it: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    updated_by: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+
+  },
   {
     sequelize,
     timestamps: false,
@@ -47,3 +60,4 @@ Earthquake.init(
 );
 
 module.exports = Earthquake;
+
