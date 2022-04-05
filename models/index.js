@@ -1,4 +1,4 @@
 const User = require('./User');
-const Earthquake = require('./Earthquake');
+const Experience = require('./Experience');
 
-module.exports = { User, Earthquake };
+module.exports = { User, Experience };

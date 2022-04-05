@@ -8,7 +8,35 @@ I'm the handlebar panel that shows all the data
 
 {{!-- Hide this until the user clicks on an earthquake --}}
 {{#if eq}}
-<div>EQ Data</div>
+<div>EQ Data
+    <div> {{ eq.__OBJECTID }} </div>
+    <div> Magnitude {{ eq.mag }} </div>
+    <div> Place {{ eq.place }} </div>
+    <div> Time {{ eq.time }} </div>
+    <div> Caused Tsuanmi {{ eq.tsunami }} </div>
+</div>
+
 {{/if}}
 {{!-- Hide this until the user logs in and clicks on an earthquake --}}
+{{#if logged_in}}
 <div>Experience</div>
+    <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
+      <div class="card-body new-experience-form">
+        <form>
+          <div class="card-header text-dark bg-primary text-center">Feel It</div>
+          <div class="form-group">
+            <label for="text">feel it </label>
+            <input type="text" id="experience-feel" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="description">description</label>
+            <input type="password" id="experience-desc" class="form-control" placeholder="Password">
+          </div>
+          <div class="col text-center">
+            <button type="submit" class="btn btn-primary text-center">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+<script src="./js/experience.js"></script>
+{{/if }}
