@@ -43,3 +43,11 @@ body {
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;
 }
+
+.form-group {
+  margin: 20px;
+}
+
+.login-page {
+  background-image: url("../images/earthquake-gf2e055464_1920.jpg");
+}

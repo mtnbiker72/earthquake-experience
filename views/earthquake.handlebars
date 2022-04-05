@@ -44,7 +44,7 @@
                 ]
             },
             {
-                field: "place"  
+                field: "place"
             }]
         };
 
@@ -104,7 +104,23 @@
                         const graphic = response.results[0].graphic;
                         const attributes = graphic.attributes;
                         const category = attributes.CAT;
-                        setEarthquake(attributes);
+
+                        fetch("/api/earthquake", {
+                            method: "POST",
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(attributes)
+                        }).then(res => {
+                            document.location.replace('/');
+                            console.log("Request complete! response:", res);
+                        });
+{{!-- 
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "/earthquake", false);
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                        xhr.send(JSON.stringify({
+                            value: attributes
+                        })); --}}
+                        {{!-- { { !--setEarthquake(attributes); --} } --}}
                     }
                 };
             });
@@ -112,7 +128,11 @@
 
 </script>
 
-
 <div class="map" id="viewDiv"></div>
 
-<div class="panel">{{> side-panel}}</div>
+<div class="panel">
+    {{#if eq}}
+    <div>Help me</div>
+    {{/if}}
+    {{> side-panel}}
+</div>

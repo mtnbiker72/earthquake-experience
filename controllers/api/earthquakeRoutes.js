@@ -1,15 +1,14 @@
 const router = require('express').Router();
-const { Earthquake } = require('../../models');
+// const { RAW } = require('sequelize/types/query-types');
+// const { Earthquake } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
+    console.log(req.body);
   try {
-    const newEarthquake = await Earthquake.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
-
+    req.session.eq = JSON.stringify(req.body);
     res.status(200).json(newEarthquake);
+
   } catch (err) {
     res.status(400).json(err);
   }
