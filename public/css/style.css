@@ -43,3 +43,13 @@ body {
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;
 }
+
+.nav {
+  display: block;
+  padding: 8px;
+  background-color: #dddddd;
+  text-align: center;
+}
+li a:hover {
+  background-color: #111;
+}
