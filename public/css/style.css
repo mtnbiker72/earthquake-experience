@@ -32,15 +32,22 @@ body,
   width: 100%;
 }
 
+.nav_bar {
+  background-color: black;
+}
 body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
+  border: 10px;
 }
 
+h1 {
+  text-align: center;
+}
 .content {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 3fr 1fr;
   grid-template-rows: 1fr;
 }
 
@@ -50,4 +57,22 @@ body {
 
 .login-page {
   background-image: url("../images/earthquake-gf2e055464_1920.jpg");
+}
+
+.search {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.eq_heading {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.eq_data {
+  font-size: 16px;
+  font-style: italic;
+  text-decoration: none;
 }

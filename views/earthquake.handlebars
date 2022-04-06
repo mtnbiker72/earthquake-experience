@@ -113,14 +113,6 @@
                             document.location.replace('/');
                             console.log("Request complete! response:", res);
                         });
-{{!-- 
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", "/earthquake", false);
-                        xhr.setRequestHeader('Content-Type', 'application/json');
-                        xhr.send(JSON.stringify({
-                            value: attributes
-                        })); --}}
-                        {{!-- { { !--setEarthquake(attributes); --} } --}}
                     }
                 };
             });
@@ -132,7 +124,7 @@
 
 <div class="panel">
     {{#if eq}}
-    <div>Help me</div>
+    <div></div>
     {{/if}}
     {{> side-panel}}
 </div>
