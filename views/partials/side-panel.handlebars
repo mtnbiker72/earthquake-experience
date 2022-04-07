@@ -1,16 +1,9 @@
-{{!--
-<script>
-    function setEarthquake(eqData) {
-        alert(JSON.stringify(eqData));
-    }
-</script> --}}
-
 {{!-- Hide this until the user clicks on an earthquake --}}
 {{#if eq}}
-<div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+<div class="card text-white bg-primary mb-3">
     <div>
         <div class="eq-heading">Earthquake Data</div>
-        <div> Object ID: {{ eq.__OBJECTID }} </div>
+        <div> USGS ID: {{ eq.__OBJECTID }} </div>
         <div> Magnitude: {{ eq.mag }} </div>
         <div> Place: {{ eq.place }} </div>
         <div> Time: {{ eq.time }} </div>
@@ -19,7 +12,7 @@
 </div>
 {{/if}}
 
-<div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+<div class="card text-white bg-primary mb-3">
     <div class="eq-heading">Experiences</div>
     {{#each experiences as |experience| }}
     <div> User ID: {{experience.user_id}} on {{ experience.created_at}}</div>
@@ -31,7 +24,7 @@
 
 {{!-- Hide this until the user logs in and clicks on an earthquake --}}
 {{#if logged_in}}
-<div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+<div class="card text-white bg-primary mb-3">
     <div class="eq-heading">Add New Experience</div>
     <div class="card-body new-experience-form">
         <form>
@@ -49,7 +42,5 @@
         </form>
     </div>
 </div>
-
 <script src="./js/experience.js"></script>
-
 {{/if }}

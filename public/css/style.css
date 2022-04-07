@@ -8,23 +8,32 @@ body,
   width: 100%;
 }
 
-nav {
+/* nav {
   flex: 1 0 auto;
-}
+} */
 
+.navbar {
+  background-color: rgb(4, 8, 50);
+  color: white;
+  max-height: 65px;
+}
 body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   border: 10px;
+  background-color: rgb(4, 8, 50);
+  color: white;
+}
+
+h1 {
+  text-shadow: 2px 2px red;
+  font-weight: bold;
+  text-align: center;
 }
 
 .card {
   margin-left: 15px;
-}
-
-h1 {
-  text-align: center;
 }
 
 .content {
@@ -38,7 +47,8 @@ h1 {
 }
 
 .login-page {
-  background-image: url("../images/earthquake-gf2e055464_1920.jpg");
+  background-image: url("../images/earthquake-gf2e055464_1920.jpg"); 
+  background-size: 100%;
 }
 
 .search {
