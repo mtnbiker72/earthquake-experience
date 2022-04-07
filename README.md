@@ -22,6 +22,16 @@
 <br>
 <br>
 
+<h1 style= "color:#883030">Required Modules</h1>
+<ul> - bcrypt </ul>
+<ul> - connect-session-sequelize </ul>
+<ul> - dotenv </ul>
+<ul> - express </ul>
+<ul> - express-handlebars </ul>
+<ul> - express-session </ul>
+<ul> - moment </ul>
+<ul> - mysql2 </ul>
+<ul> - sequelize </ul>
 
 <h1 style= "color:#883030">Links</h1>
 

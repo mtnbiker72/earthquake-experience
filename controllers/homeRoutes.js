@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     try {
       // Get all projects and JOIN with user data
       const experienceData = await Experience.findAll({
-            attributes: ['eq_id', 'feel_it', 'description', 'user_id'],
+            attributes: ['eq_id', 'feel_it', 'description', 'user_id', 'created_at'],
             where: {
               eq_id: eqData.__OBJECTID,
             },

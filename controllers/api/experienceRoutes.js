@@ -10,6 +10,7 @@ router.post('/', withAuth, async (req, res) => {
       user_id: req.session.user_id,
       eq_id: eq.__OBJECTID
     });
+    console.log(newExperience);
     
     res.status(200).json(newExperience);
   } catch (err) {

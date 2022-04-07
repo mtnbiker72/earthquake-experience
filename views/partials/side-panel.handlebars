@@ -22,7 +22,7 @@
 <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
     <div class="eq-heading">Experiences</div>
     {{#each experiences as |experience| }}
-    <div> User ID: {{user.name}} </div>
+    <div> User ID: {{experience.user_id}} on {{ experience.created_at}}</div>
     <div> Did you feel it: {{experience.feel_it}} </div>
     <div> Experience: {{experience.description}} </div>
     <br>
