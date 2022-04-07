@@ -32,24 +32,49 @@ body,
   width: 100%;
 }
 
+nav {
+  flex: 1 0 auto;
+}
+
 body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
+  border: 10px;
+}
+
+h1 {
+  text-align: center;
 }
 
 .content {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 3fr 1fr;
   grid-template-rows: 1fr;
 }
 
-.nav {
-  display: block;
-  padding: 8px;
-  background-color: #dddddd;
-  text-align: center;
+.form-group {
+  margin: 20px;
 }
-li a:hover {
-  background-color: #111;
+
+.login-page {
+  background-image: url("../images/earthquake-gf2e055464_1920.jpg");
+}
+
+.search {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.eq_heading {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.eq_data {
+  font-size: 16px;
+  font-style: italic;
+  text-decoration: none;
 }

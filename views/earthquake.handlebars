@@ -44,7 +44,7 @@
                 ]
             },
             {
-                field: "place"  
+                field: "place"
             }]
         };
 
@@ -58,15 +58,29 @@
             outFields: ["mag", "place", "time", "tsunami"]
         });
 
+        let viewExtentString = localStorage.getItem("view_extent");
+        let viewExtent = null;
+        if (viewExtentString) {
+            viewExtent = JSON.parse(viewExtentString);
+        }
+
+        let viewZoomString = localStorage.getItem("view_zoom");
+        let viewZoom = 4;
+        if (viewZoomString) {
+            viewZoom = JSON.parse(viewZoomString);
+        }
+
         const map = new Map({
-            basemap: "gray-vector",
-            layers: [earthquakeLayer]
+            basemap: "satellite",
+            layers: [earthquakeLayer],
+            {{!-- extent: viewExtent --}}
         });
 
         const view = new MapView({
             container: "viewDiv",
             center: [-168, 46],
-            zoom: 2,
+            extent: viewExtent,
+            zoom: viewZoom,
             map: map
         });
 
@@ -85,6 +99,9 @@
                 view.on("pointer-down", eventHandler);
 
                 function eventHandler(event) {
+                    // grab extent to keep the map in the same place after refresh
+                    localStorage.setItem("view_extent", JSON.stringify(view.extent));
+                    localStorage.setItem("view_zoom", JSON.stringify(view.zoom));
                     // only include graphics from hurricanesLayer in the hitTest
                     const opts = {
                         include: earthquakeLayer
@@ -104,7 +121,15 @@
                         const graphic = response.results[0].graphic;
                         const attributes = graphic.attributes;
                         const category = attributes.CAT;
-                        setEarthquake(attributes);
+
+                        fetch("/api/earthquake", {
+                            method: "POST",
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(attributes)
+                        }).then(res => {
+                            document.location.replace('/');
+                            console.log("Request complete! response:", res);
+                        });
                     }
                 };
             });
@@ -112,7 +137,11 @@
 
 </script>
 
-
 <div class="map" id="viewDiv"></div>
 
-<div class="panel">{{> side-panel}}</div>
+<div class="panel">
+    {{#if eq}}
+    <div></div>
+    {{/if}}
+    {{> side-panel}}
+</div>

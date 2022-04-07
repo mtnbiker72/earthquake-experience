@@ -8,6 +8,7 @@ USE earthquake_db;
 CREATE TABLE earthquake (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     place VARCHAR(100) NOT NULL
+    -- how do I pull the data about the earthquakes from the JSON file into this table? each one had a unique  OBJECTID from the JSON file, we could reference this ID as the PRIMARY KEY to pull the other info we want (mag, place, lat, long)
 );
 
 CREATE TABLE stories (

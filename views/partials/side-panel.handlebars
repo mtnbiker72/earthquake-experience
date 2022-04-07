@@ -1,13 +1,63 @@
-<script> 
+<script>
     function setEarthquake(eqData) {
         alert(JSON.stringify(eqData));
     }
 </script>
-I'm the handlebar panel that shows all the data
-<div>Search Bar</div>
+
+{{!-- <div class="eq_heading">Search Bar</div> --}}
 
 {{!-- Hide this until the user clicks on an earthquake --}}
-<div>EQ Data</div>
+{{#if eq}}
+<div>
+    <div class="eq_heading">EQ Data</div>
+    <div> Object ID: {{ eq.__OBJECTID }} </div>
+    <div> Magnitude: {{ eq.mag }} </div>
+    <div> Place: {{ eq.place }} </div>
+    <div> Time: {{ eq.time }} </div>
+    <div> Caused Tsuanmi: {{ eq.tsunami }} </div>
+</div>
+
+{{/if}}
+
+<div class="eq_heading">Experiences</div>
+<div class="eq_data">
+    {{#each experiences as |experience| }}
+    <div class="row mb-4 project">
+        <div class="col-md-5">
+            <div>
+                User ID: {{experience.user_id}}
+            </div>
+            <div>
+                Did you feel it: {{experience.feel_it}}
+            </div>
+            <div>
+                Experience: {{experience.description}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
 
 {{!-- Hide this until the user logs in and clicks on an earthquake --}}
-<div>Div Experience</div>
+{{#if logged_in}}
+<div class="eq_heading">Add New Experience</div>
+<div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
+    <div class="card-body new-experience-form">
+        <form>
+            <div class="form-group">
+                <label for="text">Did you feel it? </label>
+                <input type="text" id="experience-feel" class="form-control" aria-describedby="experienceData">
+            </div>
+            <div class="form-group">
+                <label for="FormControlTextarea1">Description: </label>
+                <textarea class="form-control" id="experience-desc" rows="3"></textarea>
+            </div>
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary text-center">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="./js/experience.js"></script>
+
+{{/if }}

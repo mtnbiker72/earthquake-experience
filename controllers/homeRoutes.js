@@ -1,60 +1,39 @@
 const router = require('express').Router();
-const { Earthquake, User } = require('../models');
-const withAuth = require('../utils/auth');
+const { Experience } = require('../models');
 
 router.get('/', async (req, res) => {
-    res.render('earthquake');
-  });
+  console.log("This is in home routes" + req.session.eq);
+  let eqData = req.session.eq ? JSON.parse(req.session.eq) : null;
+  let experiences = [];
+  if (eqData && eqData.__OBJECTID) {
 
-router.get('/earthquake/:id', async (req, res) => {
-  try {
-    const earthquakeData = await earthquake.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
+    try {
+      // Get all projects and JOIN with user data
+      const experienceData = await Experience.findAll({
+            attributes: ['eq_id', 'feel_it', 'description', 'user_id'],
+            where: {
+              eq_id: eqData.__OBJECTID,
+            },
+      });
 
-    const earthquake = earthquakeData.get({ plain: true });
+      // Serialize data so the template can read it
+      experiences = experienceData.map((experience) => experience.get({ plain: true }));
 
-    res.render('earthquake', {
-      ...earthquake,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
+    } catch (err) {
+      res.status(500).json(err);
+      return;
+    }
   }
-});
 
-// Use withAuth middleware to prevent access to route
-router.get('/addEarthquake', withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: earthquake }],
-    });
-
-    const user = userData.get({ plain: true });
-
-    res.render('addEarthquake', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  res.render('earthquake', { logged_in: req.session.logged_in, eq: eqData, experiences });
 });
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/');
     return;
   }
-
   res.render('login');
 });
 
