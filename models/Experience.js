@@ -1,4 +1,4 @@
-const { Model, DataTypes, TEXT } = require('sequelize');
+const { Model, DataTypes, TEXT, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Experience extends Model { }
@@ -24,14 +24,13 @@ Experience.init(
       allowNull: true,
     },
     user_id: {
-      type: DataTypes.TEXT,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'experience',
