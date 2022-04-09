@@ -1,21 +1,19 @@
 const router = require('express').Router();
 const { Experience } = require('../models');
 
+// Display experience data for a specfic earthquake
 router.get('/', async (req, res) => {
   let eqData = req.session.eq ? JSON.parse(req.session.eq) : null;
   let experiences = [];
   if (eqData && eqData.__OBJECTID) {
 
     try {
-      // Get all projects and JOIN with user data
       const experienceData = await Experience.findAll({
             attributes: ['eq_id', 'feel_it', 'description', 'user_id', 'created_at'],
             where: {
               eq_id: eqData.__OBJECTID,
             },
       });
-
-      // Serialize data so the template can read it
       experiences = experienceData.map((experience) => experience.get({ plain: true }));
 
     } catch (err) {
@@ -27,8 +25,9 @@ router.get('/', async (req, res) => {
   res.render('earthquake', { logged_in: req.session.logged_in, eq: eqData, experiences });
 });
 
+
+// Login route - if use is already logged in, redirect to home /
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect to home page in /
   if (req.session.logged_in) {
     res.redirect('/');
     return;
@@ -36,6 +35,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// Logout route 
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

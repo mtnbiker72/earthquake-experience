@@ -6,7 +6,7 @@
         <div> USGS ID: {{ eq.__OBJECTID }} </div>
         <div> Magnitude: {{ eq.mag }} </div>
         <div> Place: {{ eq.place }} </div>
-        <div> Time: {{ eq.time }} </div>
+        <div> Time: {{ format_ts_date eq.time }} </div>
         <div> Caused Tsuanmi: {{ eq.tsunami }} </div>
     </div>
 </div>

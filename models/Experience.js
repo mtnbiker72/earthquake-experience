@@ -1,6 +1,7 @@
 const { Model, DataTypes, TEXT, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
 
+// Use moment to update date format displayed
 var moment = require('moment'); // require
 moment().format();
 

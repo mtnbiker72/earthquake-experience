@@ -1,4 +1,5 @@
 
+/* ESRI map css */
 html,
 body,
 #viewDiv {
@@ -8,15 +9,6 @@ body,
   width: 100%;
 }
 
-/* nav {
-  flex: 1 0 auto;
-} */
-
-.navbar {
-  background-color: rgb(4, 8, 50);
-  color: white;
-  max-height: 65px;
-}
 body {
   display: grid;
   grid-template-columns: 1fr;
@@ -40,6 +32,12 @@ h1 {
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 1fr;
+}
+
+.navbar {
+  background-color: rgb(4, 8, 50);
+  color: white;
+  max-height: 65px;
 }
 
 .form-group {
