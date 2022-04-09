@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', (req, res) => res.json(topTen));
+// router.get('/', (req, res) => res.json(topTen));
 
 // router.get('/', async (req, res) => {
 //   try {

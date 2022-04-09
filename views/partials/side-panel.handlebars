@@ -7,7 +7,7 @@
         <div> Magnitude: {{ eq.mag }} </div>
         <div> Place: {{ eq.place }} </div>
         <div> Time: {{ format_ts_date eq.time }} </div>
-        <div> Caused Tsuanmi: {{ eq.tsunami }} </div>
+        <div> Caused Tsuanmi: {{ format_tsu eq.tsunami }} </div>
     </div>
 </div>
 {{/if}}
@@ -48,7 +48,7 @@
 <div class="card text-white bg-primary mb-3">
     <div class="eq-heading">Top Ten Earthquakes</div>
     <div>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="myChart" width="400" height="300"></canvas>
     </div>
 </div>
         <script>
@@ -90,7 +90,7 @@
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: false
                         }
                     }
                 }

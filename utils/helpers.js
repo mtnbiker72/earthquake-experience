@@ -11,4 +11,16 @@ module.exports = {
     // format large numbers with commas
     return parseInt(amount).toLocaleString();
   },
+format_tsu: (boolean) => {
+  const bool = new Boolean (boolean)
+  if (bool === true) {
+    return bool.toLocaleString();
+    // return “Oh yeah”;
+  }
+  else {
+    return bool.toLocaleString();
+    // return “Nope”;
+  }
+}
+
 };
