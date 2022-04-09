@@ -1,15 +1,18 @@
 const router = require('express').Router();
-const { Experience } = require('../models');
+const { Experience, User } = require('../models');
+const topTen = require('../public/data.json');
 
 // Display experience data for a specfic earthquake
 router.get('/', async (req, res) => {
   let eqData = req.session.eq ? JSON.parse(req.session.eq) : null;
   let experiences = [];
+  console.log(topTen);
   if (eqData && eqData.__OBJECTID) {
 
     try {
       const experienceData = await Experience.findAll({
             attributes: ['eq_id', 'feel_it', 'description', 'user_id', 'created_at'],
+            include: [{ model: User}],
             where: {
               eq_id: eqData.__OBJECTID,
             },
@@ -22,7 +25,7 @@ router.get('/', async (req, res) => {
     }
   }
 
-  res.render('earthquake', { logged_in: req.session.logged_in, eq: eqData, experiences });
+  res.render('earthquake', { logged_in: req.session.logged_in, eq: eqData, experiences, topTen });
 });
 
 

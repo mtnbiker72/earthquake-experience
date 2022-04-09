@@ -1,14 +1,4 @@
-[
-    {
-    "mag": "7.6",
-    "place": "Close to America"
-    },
-    {
-    "mag": "7.5",
-    "place": "Close to Australia"
-    },
-    {
-    "mag": "4.5",
-    "place": "Close to New Zealand"
-    }
-]
+{
+    "data": "[ 7.4, 8.2, 6.7, 5.5, 5.8, 8, 6.9, 5.9, 6.6, 7.2 ]",
+    "labels": "['Perth', 'Alaska', 'Alaska', 'Indonesia', 'San Francisco', 'Japan', 'Alaska', 'Adalaide', 'Aleutian Islands', 'New Zealand']"
+}

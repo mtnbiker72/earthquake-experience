@@ -15,7 +15,7 @@
 <div class="card text-white bg-primary mb-3">
     <div class="eq-heading">Experiences</div>
     {{#each experiences as |experience| }}
-    <div> User ID: {{experience.user_id}} on {{ experience.created_at}}</div>
+    <div> User ID: {{experience.user.name}} on {{ experience.created_at}}</div>
     <div> Did you feel it: {{experience.feel_it}} </div>
     <div> Experience: {{experience.description}} </div>
     <br>
@@ -47,4 +47,52 @@
 
 <div class="card text-white bg-primary mb-3">
     <div class="eq-heading">Top Ten Earthquakes</div>
+    <div>
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
 </div>
+        <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{{topTen.labels}}},
+                    datasets: [{
+                        label: 'Magnitude',
+                        data: {{topTen.data}},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>

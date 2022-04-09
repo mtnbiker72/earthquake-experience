@@ -2,7 +2,6 @@ const router = require('express').Router();
 // const { RAW } = require('sequelize/types/query-types');
 // const { Earthquake } = require('../../models');
 const withAuth = require('../../utils/auth');
-const topTen = require('../../public/data.json')
 
 router.post('/', async (req, res) => {
   try {
