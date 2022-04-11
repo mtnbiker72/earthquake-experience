@@ -51,26 +51,40 @@
         <canvas id="myChart" width="400" height="300"></canvas>
     </div>
 </div>
-        <script>
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: {{{topTen.labels}}},
-                    datasets: [{
-                        label: 'Magnitude',
-                        data: {{topTen.data}},
-                        backgroundColor: ["red", "blue", "green", "yellow", "grey", "red", "blue", "green", "yellow", "grey"],
-                        borderColor: ["white", "white", "white", "white", "white", "white", "white", "white", "white", "white"],
-                        borderWidth: 1
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{{ topTen.labels }}},
+    datasets: [{
+        label: 'Magnitude',
+        data: {{ topTen.data }},
+        backgroundColor: ["red", "blue", "green", "yellow", "grey", "red", "blue", "green", "yellow", "grey"],
+        borderColor: ["white", "white", "white", "white", "white", "white", "white", "white", "white", "white"],
+        borderWidth: 1
                     }]
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+    options: {
+        scales: {
+            y: {
+                beginAtZero: false,
+                ticks: {
+                    color: "white",
+                    font: {
+                        size: 14,
                     }
                 }
+            },
+            x: {
+                ticks: {
+                    color: "white",
+                    font: {
+                        size: 14,
+                    }
+                }
+            }
+        }
+    }
             });
-        </script>
+</script>

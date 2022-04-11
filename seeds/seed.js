@@ -1,7 +1,8 @@
 const sequelize = require('../config/connection');
-const { User, Earthquake } = require('../models');
+const { User, Experience } = require('../models');
 
 const userData = require('./userData.json');
+const experienceData = require('./experienceData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -11,12 +12,10 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  // for (const earthquake of earthquakeData) {
-  //   await Earthquake.create({
-  //     ...earthquake,
-  //     user_id: users[Math.floor(Math.random() * users.length)].id,
-  //   });
-  // }
+  const experiences = await Experience.bulkCreate(experienceData, {
+    individualHooks: true,
+    returning: true,
+  });
 
   process.exit(0);
 };

@@ -1,0 +1,21 @@
+[
+    {
+      "eq_id": "us6000h5zu",
+      "feel_it": "0",
+      "description": "The whole room shook and a window broke",
+      "user_id": 1
+    },
+    {
+      "eq_id": "us6000h6ne",
+      "feel_it": "0",
+      "description": "Not so bad, but not so good either",
+      "user_id": 1
+    },
+    {
+      "eq_id": "nc73713331",
+      "feel_it": "1",
+      "description": "Barely noticeable",
+      "user_id": 2
+    }
+  ]
+  
