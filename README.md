@@ -1,5 +1,8 @@
 <h1 align="center" style= "color:#00acfc">Earthquakes Around the World/Did'Ya Feel It?</h1> 
 
+## App Location:  [Earthquakes Around the World](https://blooming-caverns-49714.herokuapp.com/)
+
+<br>
 <h1 style= "color:#883030">The Idea/Description</h1>
 <p align= "center">
 
@@ -44,18 +47,21 @@ is currently supplied by a hard-coded json file.
 
 <h1 style= "color:#883030">Links</h1>
 
- ## Github:  [Earthquakes Around the World](https://github.com/chris-reilly99/Project-2)
+ ## Github:  [Earthquakes Around the World](https://github.com/chris-reilly99/Earthquake-Experience)
  ## Email:  heather.graham@yahoo.com
  ## Email:  cknight98@gmail.com 
  ## Email:  christopher.c.riley@du.edu
 <br>
 <h1 style= "color:#883030">Usage</h1>
 
-<ul> update .env file with environment variables </ul>
-<ul> create the database - source schema.sql </ul>
-<ul> seed the database - npm run seed </ul>
-<ul> npm i </ul>
-<ul> npm start </ul>
+Load using the heroku link  - https://blooming-caverns-49714.herokuapp.com/
+<ul>  OR  </ul>
+Download from github and run the following:  
+<ul> * Update .env file with environment variables </ul>
+<ul> * Create the database - source schema.sql </ul>
+<ul> * Seed the database - npm run seed </ul>
+<ul> * npm i </ul>
+<ul> * npm start </ul>
 
 <br>
 <p align= "center" style= "color:#b38d25">Wire Frame</p>

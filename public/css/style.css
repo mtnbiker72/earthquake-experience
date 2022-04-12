@@ -25,13 +25,7 @@ h1 {
 }
 
 .card {
-  margin-left: 15px;
-}
-
-.content {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-template-rows: 1fr;
+  margin: 15px;
 }
 
 .navbar {
@@ -45,8 +39,9 @@ h1 {
 }
 
 .login-page {
-  background-image: url("../images/earthquake-gf2e055464_1920.jpg"); 
+  background-image: url("../images/cracks-g05993db6a_1920.jpg"); 
   background-size: 100%;
+  background-position: center;
 }
 
 .search {
