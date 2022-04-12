@@ -1,4 +1,3 @@
-
 /* ESRI map css */
 html,
 body,
@@ -26,6 +25,11 @@ h1 {
 
 .card {
   margin: 15px;
+}
+.content {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 .navbar {
