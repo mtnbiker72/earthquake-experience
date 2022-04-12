@@ -58,26 +58,19 @@ is currently supplied by a hard-coded json file.
 <ul> npm start </ul>
 
 <br>
-
-
 <p align= "center" style= "color:#b38d25">Wire Frame</p>
 
 ![Wire Frame](/public/images/FullSizeRender.jpeg)
 
 <br>
 
-<br>
-
-
-
 <h1 style= "color:#883030">What it looks like</h1>
-
 
 <br>
 
 <p align= "center" style= "color:#b38d25">Main</p>
 
-![Earthquake's Around the World](/public/images/MainApp.png)
+![Earthquake's Around the World](/public/images/MainApp2.png)
 
 <br>
 
