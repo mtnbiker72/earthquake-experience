@@ -1,63 +1,90 @@
-<script>
-    function setEarthquake(eqData) {
-        alert(JSON.stringify(eqData));
-    }
-</script>
-
-{{!-- <div class="eq_heading">Search Bar</div> --}}
-
 {{!-- Hide this until the user clicks on an earthquake --}}
 {{#if eq}}
-<div>
-    <div class="eq_heading">EQ Data</div>
-    <div> Object ID: {{ eq.__OBJECTID }} </div>
-    <div> Magnitude: {{ eq.mag }} </div>
-    <div> Place: {{ eq.place }} </div>
-    <div> Time: {{ eq.time }} </div>
-    <div> Caused Tsuanmi: {{ eq.tsunami }} </div>
+<div class="card text-white bg-primary mb-3">
+    <div>
+        <div class="eq-heading">Earthquake Data</div>
+        <div> USGS ID: {{ eq.__OBJECTID }} </div>
+        <div> Magnitude: {{ eq.mag }} </div>
+        <div> Place: {{ eq.place }} </div>
+        <div> Time: {{ format_ts_date eq.time }} </div>
+        <div> Caused Tsuanmi: {{ format_tsu eq.tsunami }} </div>
+    </div>
 </div>
-
 {{/if}}
 
-<div class="eq_heading">Experiences</div>
-<div class="eq_data">
+<div class="card text-white bg-primary mb-3">
+    <div class="eq-heading">Experiences</div>
     {{#each experiences as |experience| }}
-    <div class="row mb-4 project">
-        <div class="col-md-5">
-            <div>
-                User ID: {{experience.user_id}}
-            </div>
-            <div>
-                Did you feel it: {{experience.feel_it}}
-            </div>
-            <div>
-                Experience: {{experience.description}}
-            </div>
-        </div>
-    </div>
+    <div> User ID: {{experience.user.name}} on {{ experience.created_at}}</div>
+    <div> Did you feel it: {{experience.feel_it}} </div>
+    <div> Experience: {{experience.description}} </div>
+    <br>
     {{/each}}
 </div>
 
 {{!-- Hide this until the user logs in and clicks on an earthquake --}}
 {{#if logged_in}}
-<div class="eq_heading">Add New Experience</div>
-<div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
+<div class="card text-white bg-primary mb-3">
+    <div class="eq-heading">Add New Experience</div>
     <div class="card-body new-experience-form">
         <form>
-            <div class="form-group">
-                <label for="text">Did you feel it? </label>
-                <input type="text" id="experience-feel" class="form-control" aria-describedby="experienceData">
-            </div>
-            <div class="form-group">
-                <label for="FormControlTextarea1">Description: </label>
-                <textarea class="form-control" id="experience-desc" rows="3"></textarea>
-            </div>
+            <label for="FormControlSelect">Did you feel it?</label>
+            <select class="form-control" id="experience-feel">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+            <label for="FormControlTextarea1">Description: </label>
+            <textarea class="form-control" id="experience-desc" rows="3"></textarea>
             <div class="col text-center">
-                <button type="submit" class="btn btn-primary text-center">Submit</button>
+                <br>
+                <button type="submit" class="btn btn-dark text-center">Submit</button>
             </div>
         </form>
     </div>
 </div>
 <script src="./js/experience.js"></script>
-
 {{/if }}
+
+<div class="card text-white bg-primary mb-3">
+    <div class="eq-heading">Top Ten Earthquakes</div>
+    <div>
+        <canvas id="myChart" width="400" height="300"></canvas>
+    </div>
+</div>
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{{ topTen.labels }}},
+    datasets: [{
+        label: 'Magnitude',
+        data: {{ topTen.data }},
+        backgroundColor: ["red", "blue", "green", "yellow", "grey", "red", "blue", "green", "yellow", "grey"],
+        borderColor: ["white", "white", "white", "white", "white", "white", "white", "white", "white", "white"],
+        borderWidth: 1
+                    }]
+                },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: false,
+                ticks: {
+                    color: "white",
+                    font: {
+                        size: 14,
+                    }
+                }
+            },
+            x: {
+                ticks: {
+                    color: "white",
+                    font: {
+                        size: 14,
+                    }
+                }
+            }
+        }
+    }
+            });
+</script>

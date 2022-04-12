@@ -1,3 +1,4 @@
+// Get feel_it and description from form and use it to post a new experience
 const newExperienceHandler = async (event) => {
     event.preventDefault();
   

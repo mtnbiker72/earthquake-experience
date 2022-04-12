@@ -1,11 +1,11 @@
+{{!-- Draw ESRI map and load earthquake data from USGS --}}
+
 <script>
     require(["esri/Map", "esri/layers/GeoJSONLayer", "esri/views/MapView"], (
         Map,
         GeoJSONLayer,
         MapView
     ) => {
-        // If GeoJSON files are not on the same domain as your website, a CORS enabled server
-        // or a proxy is required.
         const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
         const template = {
             title: "Earthquake Info",
@@ -43,11 +43,10 @@
                 }
                 ]
             },
-            {
-                field: "place"
-            }]
+            ]
         };
 
+        {{!-- Add a new earthquakeLayer and use it to display mag, place, time and tsunami --}}
         const earthquakeLayer = new GeoJSONLayer({
             url: url,
             copyright: "USGS Earthquakes",
@@ -58,6 +57,8 @@
             outFields: ["mag", "place", "time", "tsunami"]
         });
 
+        {{!-- Store the extent and zoom in local storage so that when the map is redrawn,
+        the same location/zoom level is stored. --}}
         let viewExtentString = localStorage.getItem("view_extent");
         let viewExtent = null;
         if (viewExtentString) {
@@ -73,72 +74,72 @@
         const map = new Map({
             basemap: "satellite",
             layers: [earthquakeLayer],
-            {{!-- extent: viewExtent --}}
         });
 
-        const view = new MapView({
-            container: "viewDiv",
-            center: [-168, 46],
-            extent: viewExtent,
-            zoom: viewZoom,
-            map: map
-        });
+    const view = new MapView({
+        container: "viewDiv",
+        center: [-168, 46],
+        extent: viewExtent,
+        zoom: viewZoom,
+        map: map
+    });
 
-        // Sample map code from ESRI, slightly modified for earthquakes
-        // https://developers.arcgis.com/javascript/latest/sample-code/sandbox/?sample=view-hittest
+    // Sample map code from ESRI, slightly modified for earthquakes
+    // https://developers.arcgis.com/javascript/latest/sample-code/sandbox/?sample=view-hittest
 
-        view
-            .when()
-            .then(() => {
-                return earthquakeLayer.when();
-            })
-            .then((layer) => {
-                return view.whenLayerView(layer);
-            })
-            .then((layerView) => {
-                view.on("pointer-down", eventHandler);
+    view
+        .when()
+        .then(() => {
+            return earthquakeLayer.when();
+        })
+        .then((layer) => {
+            return view.whenLayerView(layer);
+        })
+        .then((layerView) => {
+            view.on("pointer-down", eventHandler);
 
-                function eventHandler(event) {
-                    // grab extent to keep the map in the same place after refresh
-                    localStorage.setItem("view_extent", JSON.stringify(view.extent));
-                    localStorage.setItem("view_zoom", JSON.stringify(view.zoom));
-                    // only include graphics from hurricanesLayer in the hitTest
-                    const opts = {
-                        include: earthquakeLayer
-                    };
-                    // the hitTest() checks to see if any graphics from the hurricanesLayer
-                    // intersect the x, y coordinates of the pointer
-                    view.hitTest(event, opts).then(getGraphics);
-                }
-
-                let highlight, currentYear, currentName;
-
-                function getGraphics(response) {
-                    // the topmost graphic from the hurricanesLayer
-                    // and display select attribute values from the
-                    // graphic to the user
-                    if (response.results.length) {
-                        const graphic = response.results[0].graphic;
-                        const attributes = graphic.attributes;
-                        const category = attributes.CAT;
-
-                        fetch("/api/earthquake", {
-                            method: "POST",
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(attributes)
-                        }).then(res => {
-                            document.location.replace('/');
-                            console.log("Request complete! response:", res);
-                        });
-                    }
+            function eventHandler(event) {
+                // Use locally stored extent and zoom to keep the map in the same place after refresh
+                localStorage.setItem("view_extent", JSON.stringify(view.extent));
+                localStorage.setItem("view_zoom", JSON.stringify(view.zoom));
+                // only include graphics from hurricanesLayer in the hitTest
+                const opts = {
+                    include: earthquakeLayer
                 };
-            });
+                // the hitTest() checks to see if any graphics from the hurricanesLayer
+                // intersect the x, y coordinates of the pointer
+                view.hitTest(event, opts).then(getGraphics);
+            }
+
+            let highlight, currentYear, currentName;
+
+            function getGraphics(response) {
+                // the topmost graphic from the hurricanesLayer and display select attribute 
+                // values from the graphic to the user
+                if (response.results.length) {
+                    const graphic = response.results[0].graphic;
+                    const attributes = graphic.attributes;
+                    const category = attributes.CAT;
+
+                    fetch("/api/earthquake", {
+                        method: "POST",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(attributes)
+                    }).then(res => {
+                        document.location.replace('/');
+                        console.log("Request complete! response:", res);
+                    });
+                }
+            };
+        });
     });
 
 </script>
 
+{{!-- Draw the map --}}
 <div class="map" id="viewDiv"></div>
 
+{{!-- Source the side panel view --}}
 <div class="panel">
     {{#if eq}}
     <div></div>

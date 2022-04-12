@@ -1,4 +1,8 @@
 module.exports = {
+  format_ts_date: (ts) => {
+    const date = new Date (ts)
+      return date.toLocaleString();
+    },
   format_date: (date) => {
     // Format date as MM/DD/YYYY
     return date.toLocaleDateString();
@@ -7,16 +11,16 @@ module.exports = {
     // format large numbers with commas
     return parseInt(amount).toLocaleString();
   },
-  get_emoji: () => {
-    const randomNum = Math.random();
+format_tsu: (boolean) => {
+  const bool = new Boolean (boolean)
+  if (bool === true) {
+    return bool.toLocaleString();
+    // return “Oh yeah”;
+  }
+  else {
+    return bool.toLocaleString();
+    // return “Nope”;
+  }
+}
 
-    // Return a random emoji
-    if (randomNum > 0.7) {
-      return `<span for="img" aria-label="lightbulb">💡</span>`;
-    } else if (randomNum > 0.4) {
-      return `<span for="img" aria-label="laptop">💻</span>`;
-    } else {
-      return `<span for="img" aria-label="gear">⚙️</span>`;
-    }
-  },
 };

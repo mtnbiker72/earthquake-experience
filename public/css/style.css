@@ -1,28 +1,5 @@
-/* header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
-}
 
-.no-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: #1b89bc;
-  text-decoration: none;
-  font-size: 100%;
-}
-
-.no-button:hover {
-  color: #065b83;
-  text-decoration: underline;
-}
-
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
-} */
-
+/* ESRI map css */
 html,
 body,
 #viewDiv {
@@ -32,19 +9,23 @@ body,
   width: 100%;
 }
 
-nav {
-  flex: 1 0 auto;
-}
-
 body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   border: 10px;
+  background-color: rgb(4, 8, 50);
+  color: white;
 }
 
 h1 {
+  text-shadow: 2px 2px red;
+  font-weight: bold;
   text-align: center;
+}
+
+.card {
+  margin-left: 15px;
 }
 
 .content {
@@ -53,12 +34,19 @@ h1 {
   grid-template-rows: 1fr;
 }
 
+.navbar {
+  background-color: rgb(4, 8, 50);
+  color: white;
+  max-height: 65px;
+}
+
 .form-group {
   margin: 20px;
 }
 
 .login-page {
-  background-image: url("../images/earthquake-gf2e055464_1920.jpg");
+  background-image: url("../images/earthquake-gf2e055464_1920.jpg"); 
+  background-size: 100%;
 }
 
 .search {
@@ -67,7 +55,7 @@ h1 {
   text-decoration: underline;
 }
 
-.eq_heading {
+.eq-heading {
   font-size: 24px;
   font-weight: bold;
   text-decoration: underline;

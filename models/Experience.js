@@ -1,5 +1,9 @@
-const { Model, DataTypes, TEXT } = require('sequelize');
+const { Model, DataTypes, TEXT, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
+
+// Use moment to update date format displayed
+var moment = require('moment'); // require
+moment().format();
 
 class Experience extends Model { }
 
@@ -24,14 +28,25 @@ Experience.init(
       allowNull: true,
     },
     user_id: {
-      type: DataTypes.TEXT,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-
+    created_at: {
+      type: DataTypes.DATE,
+      get() {
+        return moment(this.getDataValue('created_at')).format('DD-MMM-YY h:mm:ss');
+      }
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      get() {
+        return moment(this.getDataValue('updated_at')).format('DD-MM-YYYY h:mm:ss');
+      }
+    }
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'experience',
