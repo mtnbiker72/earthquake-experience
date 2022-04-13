@@ -7,9 +7,9 @@
     },
     {
       "eq_id": "us6000h6ne",
-      "feel_it": "0",
+      "feel_it": "1",
       "description": "Not so bad, but not so good either",
-      "user_id": 1
+      "user_id": 3
     },
     {
       "eq_id": "nc73713331",
@@ -18,7 +18,7 @@
       "user_id": 2
     },
     {
-      "eq_id": "us6000h6ne",
+      "eq_id": "us7000h1g6",
       "feel_it": "0",
       "description": "Not so bad, but not so good either",
       "user_id": 1
@@ -27,17 +27,17 @@
       "eq_id": "us7000gzl3",
       "feel_it": "0",
       "description": "Big waves, nothing much more",
-      "user_id": 1
+      "user_id": 3
     },
     {
       "eq_id": "us6000h5u6",
-      "feel_it": "0",
+      "feel_it": "1",
       "description": "Did some damage to the buildings around town",
-      "user_id": 1
+      "user_id": 2
     },
     {
       "eq_id": "us7000h0x2",
-      "feel_it": "0",
+      "feel_it": "1",
       "description": "Nothing to see here, move along",
       "user_id": 1
     }

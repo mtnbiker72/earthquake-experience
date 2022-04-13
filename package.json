@@ -10,9 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chris-reilly99/Project-2.git"
+    "url": "git+https://github.com/chris-reilly99/Earthquake-Experience.git"
   },
-  "author": "Heather, Chris, Charlie",
+  "author": "Heather Graham, Chris Reilly, Charlie Knight",
+  "heroku-postbuild": "npm run seed",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
