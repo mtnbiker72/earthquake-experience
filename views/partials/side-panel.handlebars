@@ -1,6 +1,6 @@
 {{!-- Hide this until the user clicks on an earthquake --}}
 {{#if eq}}
-<div class="card text-white bg-primary mb-3">
+<div class="card text-white bg-dark mb-3 text-center">
     <div>
         <div class="eq-heading">Earthquake Data</div>
         <div> USGS ID: {{ eq.__OBJECTID }} </div>
@@ -12,7 +12,7 @@
 </div>
 {{/if}}
 
-<div class="card text-white bg-primary mb-3">
+<div class="card text-white bg-dark mb-3 text-center">
     <div class="eq-heading">Experiences</div>
     {{#each experiences as |experience| }}
     <div> User ID: {{experience.user.name}} on {{ experience.created_at}}</div>
@@ -24,7 +24,7 @@
 
 {{!-- Hide this until the user logs in and clicks on an earthquake --}}
 {{#if logged_in}}
-<div class="card text-white bg-primary mb-3">
+<div class="card text-white bg-dark mb-3 text-center">
     <div class="eq-heading">Add New Experience</div>
     <div class="card-body new-experience-form">
         <form>
@@ -45,7 +45,7 @@
 <script src="./js/experience.js"></script>
 {{/if }}
 
-<div class="card text-white bg-primary mb-3">
+<div class="card text-white bg-dark mb-3 text-center">
     <div class="eq-heading">Top Ten Earthquakes</div>
     <div>
         <canvas id="myChart" width="400" height="300"></canvas>
