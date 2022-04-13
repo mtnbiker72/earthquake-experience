@@ -1,4 +1,3 @@
-
 /* ESRI map css */
 html,
 body,
@@ -25,9 +24,8 @@ h1 {
 }
 
 .card {
-  margin-left: 15px;
+  margin: 15px;
 }
-
 .content {
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -45,8 +43,9 @@ h1 {
 }
 
 .login-page {
-  background-image: url("../images/earthquake-gf2e055464_1920.jpg"); 
+  background-image: url("../images/cracks-g05993db6a_1920.jpg"); 
   background-size: 100%;
+  background-position: center;
 }
 
 .search {
